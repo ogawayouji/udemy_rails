@@ -21,9 +21,9 @@ class User < ApplicationRecord
         uniqueness: true, #既に存在していない
         length: { maximum: 16 },
         format: {
-            with /\A[a-z0-9]+\z/, # //の中が正規表現、行頭\A 行末\z
+            with: /\A[a-z0-9]+\z/, 
             messsage: 'は小文字英数字で入力してください'
-        }
+        }# //の中が正規表現、行頭\A 行末\z
 
     validates :password,
         length: { minimum: 8 }
