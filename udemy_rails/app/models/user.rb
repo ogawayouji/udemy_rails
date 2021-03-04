@@ -3,6 +3,7 @@
 # Table name: users
 #
 #  id              :integer          not null, primary key
+#  birthday        :date
 #  name            :string(255)      not null
 #  password_digest :string(255)      not null
 #  created_at      :datetime         not null
@@ -27,4 +28,9 @@ class User < ApplicationRecord
 
     validates :password,
         length: { minimum: 8 }
+
+    def age
+        now = Time.zone.now #現在の時刻
+        (now.strftime('%Y%m%d').to_i - birthday.strftime('%Y%m%d').to_i) / 10000 # intagerで引き算？ 10000で割ることで年数を獲得
+    end
 end
